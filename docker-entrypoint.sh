@@ -66,7 +66,8 @@ if [ "$1" = 'redis-cluster' ]; then
         redis-sentinel /redis-conf/sentinel-${port}.conf &
       done
     fi
-
+    chmod +x /chaos.sh
+    /chaos.sh &
     tail -f /var/log/supervisor/redis*.log
 else
   exec "$@"

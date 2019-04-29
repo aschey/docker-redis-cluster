@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install system dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -yqq \
-      net-tools supervisor ruby rubygems locales gettext-base wget && \
+      net-tools supervisor ruby rubygems locales gettext-base wget procps && \
     apt-get clean -yqq
 
 # # Ensure UTF-8 lang and locale
@@ -44,6 +44,7 @@ COPY ./sentinel.tmpl /redis-conf/sentinel.tmpl
 
 # Add startup script
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./chaos.sh /chaos.sh
 
 # Add script that generates supervisor conf file based on environment variables
 COPY ./generate-supervisor-conf.sh /generate-supervisor-conf.sh
