@@ -1,5 +1,4 @@
-# Build from commits based on redis:3.2
-FROM redis@sha256:7b0a40301bc1567205e6461c5bf94c38e1e1ad0169709e49132cafc47f6b51f3
+FROM redis:5.0.4
 
 LABEL maintainer="Johan Andersson <Grokzen@gmail.com>"
 
@@ -21,7 +20,7 @@ ENV LC_ALL     en_US.UTF-8
 # Necessary for gem installs due to SHA1 being weak and old cert being revoked
 ENV SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
 
-RUN gem install redis -v 4.0.2
+RUN gem install redis -v 4.1.0
 
 RUN apt-get install -y gcc make g++ build-essential libc6-dev tcl git supervisor ruby
 
